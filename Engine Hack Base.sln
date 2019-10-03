@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine Hack Base", "Engine Hack Base\Engine Hack Base.vcxproj", "{FCA22F64-6A33-409A-A445-1FCEFC72938D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCA22F64-6A33-409A-A445-1FCEFC72938D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FCA22F64-6A33-409A-A445-1FCEFC72938D}.Debug|Win32.Build.0 = Debug|Win32
+		{FCA22F64-6A33-409A-A445-1FCEFC72938D}.Release|Win32.ActiveCfg = Release|Win32
+		{FCA22F64-6A33-409A-A445-1FCEFC72938D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
