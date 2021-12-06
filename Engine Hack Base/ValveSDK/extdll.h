@@ -35,11 +35,11 @@
 // Prevent tons of unused windows definitions
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
-#define NOWINRES
-#define NOSERVICE
-#define NOMCX
-#define NOIME
-#include "windows.h"
+//#define NOWINRES
+//#define NOSERVICE
+//#define NOMCX
+//#define NOIME
+//#include "windows.h"
 #else // _WIN32
 #define FALSE 0
 #define TRUE (!FALSE)
@@ -59,9 +59,9 @@ typedef int BOOL;
 #endif //_WIN32
 
 // Misc C-runtime library headers
-#include "stdio.h"
-#include "stdlib.h"
-#include "math.h"
+//#include "stdio.h"
+//#include "stdlib.h"
+//#include "math.h"
 
 // Header file containing definition of globalvars_t and entvars_t
 typedef int	func_t;					//

@@ -279,35 +279,35 @@ unsigned int hashing(unsigned char* message, int len)
 	return hash;
 }
 
-unsigned int ReadCRC32(char* cFile)
-{
-	unsigned char code[1024];
-	int codelen = 0;
-	FILE* pFILE = fopen(cFile,"rb");
-	fseek(pFILE,0,SEEK_END);
-	codelen = ftell(pFILE);
-	fseek(pFILE,0,SEEK_SET);
-	fread(code,1024,1,pFILE);
-	unsigned int CRC;
-	memcpy(&CRC,&code[1000],4);
-	fclose(pFILE);
-	return (unsigned int)CRC;
-}
-DWORD CRC32(char* cFile)
-{
-	unsigned char* code;
-	int codelen = 0;
-	FILE* pFILE = fopen(cFile,"rb");
-	fseek(pFILE,0,SEEK_END);
-	codelen = ftell(pFILE);
-	code = new unsigned char[codelen];
-	fseek(pFILE,0,SEEK_SET);
-	fread(code,codelen,1,pFILE);
-	DWORD CRC = 0;
-	CRC = hashing(code,codelen);	
-	fclose(pFILE);
-	return CRC;
-}
+//unsigned int ReadCRC32(char* cFile)
+//{
+//	unsigned char code[1024];
+//	int codelen = 0;
+//	FILE* pFILE = fopen(cFile,"rb");
+//	fseek(pFILE,0,SEEK_END);
+//	codelen = ftell(pFILE);
+//	fseek(pFILE,0,SEEK_SET);
+//	fread(code,1024,1,pFILE);
+//	unsigned int CRC;
+//	memcpy(&CRC,&code[1000],4);
+//	fclose(pFILE);
+//	return (unsigned int)CRC;
+//}
+//DWORD CRC32(char* cFile)
+//{
+//	unsigned char* code;
+//	int codelen = 0;
+//	FILE* pFILE = fopen(cFile,"rb");
+//	fseek(pFILE,0,SEEK_END);
+//	codelen = ftell(pFILE);
+//	code = new unsigned char[codelen];
+//	fseek(pFILE,0,SEEK_SET);
+//	fread(code,codelen,1,pFILE);
+//	DWORD CRC = 0;
+//	CRC = hashing(code,codelen);	
+//	fclose(pFILE);
+//	return CRC;
+//}
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, PVOID unused)
 {

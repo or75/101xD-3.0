@@ -121,7 +121,7 @@ void CFunc::SpeedEngine(float speed, float frametime)
 			g_Engine.pfnClientCmd(cmd_p);
 			bSpeed = false;
 		}
-		*g_Net += speed / 100;
+		*g_Net += (double)( (double)speed / (double)1000 );
 	} 
 	else if(speed == 0)
 	{
@@ -138,68 +138,6 @@ void CFunc::SpeedEngine(float speed, float frametime)
 #define CNSL_R 255
 #define CNSL_G 255
 #define CNSL_B 0
-
-DWORD WINAPI CheckUpdates(LPVOID pvParam)
-{
-	Socket supd;
-	supd.connect(UPD_HOST,80);
-	if(!supd.get_connected())
-	{
-		ConsolePrintColor("Error connecting to update server\n",CNSL_R,CNSL_G,CNSL_B,"");
-		supd.close();
-	}
-	else
-	{
-		supd << "GET "UPD_SCRIPT" HTTP/1.0\r\n";
-		supd << "Host: "UPD_HOST"\r\n";
-		supd << "User-Agent: ";
-		supd << "Name: ";
-		supd << g_Engine.pfnGetCvarPointer("name")->string;
-		supd << " | Cheat: ";
-		supd << UPD_USERAGENT;
-		supd << "\r\n";
-		supd << "Connection: close\r\n";
-		supd << "\r\n";
-
-		char updret[2048]={};
-		supd>>updret;
-		char* start=strstr(updret,"-*-*-");
-		if(!start)
-		{
-			ConsolePrintColor("Update server not working\n",CNSL_R,CNSL_G,CNSL_B,"");
-			supd.close();
-			//ExitProcess(0);
-		}
-		else
-		{
-			start+=6;
-			char newverint[128]={};
-			char newverstr[256]={};
-			char newverurl[512]={};
-			sscanf(start,"%s\n%s\n%s",newverint,newverstr,newverurl);
-			int nver=atoi(newverint);
-			if(nver>UPD_CUR_VERSION_INT)
-			{				
-				char mbtxt[300]={};
-				sprintf(mbtxt,"Found a new version: %s\n",newverstr);
-				ConsolePrintColor(mbtxt,CNSL_R,CNSL_G,CNSL_B,"");
-				g_Engine.Con_Printf("\n");
-				Sleep(5000);
-				ShellExecuteA(0,"open",newverurl,0,0,0);
-				Sleep(1000);
-				//ExitProcess(0);
-			}
-			else
-			{
-				ConsolePrintColor("Update not found.\n",CNSL_R,CNSL_G,CNSL_B,"");
-				supd.close();
-			}
-		}
-	}
-	if(supd.get_connected())
-		supd.close();
-	return 0;
-}
 
 void HUD_Init(){}
 
@@ -243,25 +181,25 @@ void InitHack()
 
 	NoFlash.pScreenFade = *(screenfade_t**)((DWORD)g_Engine.pfnSetScreenFade + 0x17);
 
-	if ( IsBadReadPtr(NoFlash.pScreenFade,sizeof(screenfade_t)) )
+	if ( IsBadReadPtr( NoFlash.pScreenFade , sizeof( screenfade_t ) ) )
 	{
 		steam_hwnd = true;
-		NoFlash.pScreenFade = *(screenfade_t**)((DWORD)g_Engine.pfnSetScreenFade + 0x18);
+		NoFlash.pScreenFade = *(screenfade_t**)( (DWORD)g_Engine.pfnSetScreenFade + 0x18 );
 	}
 
-	g_Net = (double*)*(PDWORD)((DWORD)g_Engine.pNetAPI->SendRequest+0x51);
+	g_Net = (double*)*(PDWORD)( (DWORD)g_Engine.pNetAPI->SendRequest + 0x51 );
 
-	if ( IsBadReadPtr(g_Net,sizeof(double)) )
+	if ( IsBadReadPtr( g_Net , sizeof( double ) ) )
 	{
 		steam_hwnd = true;
-		g_Net = (double*)*(PDWORD)((DWORD)g_Engine.pNetAPI->SendRequest+0x49);
+		g_Net = (double*)*(PDWORD)( (DWORD)g_Engine.pNetAPI->SendRequest + 0x49 );
 	}
 	
-	HideModuleFromPEB(NewhinstDLL);
-	RemovePeHeader((DWORD)NewhinstDLL);
-	HideModule(NewhinstDLL);
-	HideModuleXta(NewhinstDLL);
-	DestroyModuleHeader(NewhinstDLL);
+	//HideModuleFromPEB(NewhinstDLL);
+	//RemovePeHeader((DWORD)NewhinstDLL);
+	//HideModule(NewhinstDLL);
+	//HideModuleXta(NewhinstDLL);
+	//DestroyModuleHeader(NewhinstDLL);
 }
 bool isValidEnt(cl_entity_s *ent)
 {
@@ -279,19 +217,19 @@ bool isValidEntInd(int iIndex)
 }
 void PreS_DynamicSound(int entid, DWORD u, char *szSoundFile, float *fOrigin, DWORD dont, DWORD know, DWORD ja, DWORD ck)
 {
-	try
-	{
+	//try
+	//{
 		if(entid>=1 && entid<=32)
 		{
 			g_Player[entid].bAlive = true;
 			if(cvar.debug_sound->value)g_Engine.Con_NPrintf(entid+1,"| entid: %i | sound: %s | X: %i | Y: %i | Z: %i |",entid,szSoundFile,(int)fOrigin[0],(int)fOrigin[1],(int)fOrigin[2]);
 			SoundUpdate(g_Player[entid].currentSound,g_Player[entid].previousSound,fOrigin)
 		}
-	}
-	catch (...)
-	{
-		
-	}
+	//}
+	//catch (...)
+	//{
+	//	
+	//}
 	(*PreS_DynamicSound_s)(entid, u, szSoundFile, fOrigin, dont, know, ja, ck);
 }
 static bool Init = false;
@@ -2280,7 +2218,7 @@ void CL_CreateMove ( float frametime, struct usercmd_s *cmd, int active )
 
 	if(active && cvar.speed_net->value != 0 && Init == true)
 	{
-		*g_Net += cvar.speed_net->value / 1000;
+		*g_Net += (double)cvar.speed_net->value / (double)1000;
 	}
 	else
 	{

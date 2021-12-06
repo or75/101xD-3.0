@@ -89,9 +89,9 @@ void *DetourFunc( BYTE *src, const BYTE *dst, const int len )
 
 void HookOpenGL( void )
 {
-	HMODULE hmOpenGL = GetModuleHandle( "opengl32.dll" );
+	/*HMODULE hmOpenGL = GetModuleHandle( "opengl32.dll" );
 	pglBegin = (glBegin_t)DetourFunc( (LPBYTE)GetProcAddress( hmOpenGL, "glBegin" ), (LPBYTE)&Hooked_glBegin, 6 );
 	pglEnd = (glEnd_t)DetourFunc( (LPBYTE)GetProcAddress( hmOpenGL, "glEnd" ), (LPBYTE)&Hooked_glEnd, 6 );
 	pglVertex3fv = (glVertex3fv_t)DetourFunc( (LPBYTE)GetProcAddress( hmOpenGL, "glVertex3fv" ), (LPBYTE)&Hooked_glVertex3fv, 6 );
-	pglClear = (glClear_t)DetourFunc( (LPBYTE)GetProcAddress( hmOpenGL, "glClear" ), (LPBYTE)&Hooked_glClear, 7 );
+	pglClear = (glClear_t)DetourFunc( (LPBYTE)GetProcAddress( hmOpenGL, "glClear" ), (LPBYTE)&Hooked_glClear, 7 );*/
 }

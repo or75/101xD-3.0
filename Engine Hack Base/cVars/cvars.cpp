@@ -454,7 +454,7 @@ void CFunc::Init()
 	cvar.esp_sound_color = g_Engine.pfnRegisterVariable(PrefHack("esp_sound_color",prefix,""),"0 255 0",0);
 	cvar.esp_sound_text = g_Engine.pfnRegisterVariable(PrefHack("esp_sound_text",prefix,""),"0",0);
 
-	cvar.gl_font = g_Engine.pfnRegisterVariable(PrefHack("opengl_font",prefix,""),"1",0);
+	cvar.gl_font = g_Engine.pfnRegisterVariable(PrefHack("opengl_font",prefix,""),"0",0);
 
 	cvar.speed = g_Engine.pfnRegisterVariable(PrefHack("speed",prefix,""),"1",0);
 	cvar.speed_net = g_Engine.pfnRegisterVariable(PrefHack("speed_net",prefix,""),"0",0);

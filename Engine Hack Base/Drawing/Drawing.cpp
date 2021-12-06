@@ -1,7 +1,8 @@
 #include <windows.h>
-#include <math.h>
-#include <gl/gl.h>
-#include <gl/glu.h>
+//#include <cmath>
+
+#include <gl/GL.h>
+
 #include "Drawing.h"
 #include "../SDKIncludes.h"
 

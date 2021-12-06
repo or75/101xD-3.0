@@ -17,9 +17,15 @@
 //
 
 // Misc C-runtime library headers
-#include "STDIO.H"
-#include "STDLIB.H"
-#include "MATH.H"
+//#include "STDIO.H"
+//#include "STDLIB.H"
+//#include "MATH.H"
+
+#include <cmath>
+
+#include <algorithm>
+
+using namespace std;
 
 // Header file containing definition of globalvars_t and entvars_t
 typedef int	func_t;					//

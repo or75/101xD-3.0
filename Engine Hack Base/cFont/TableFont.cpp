@@ -1,7 +1,7 @@
 #include <windows.h>
-#include <cstdarg>
-#include <cstring>
-#include <cstdio>
+//#include <cstdarg>
+//#include <cstring>
+//#include <cstdio>
 #include "../SDKIncludes.h"
 #include "TableFont.h"
 

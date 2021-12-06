@@ -77,7 +77,7 @@ bool COffsets::Initialize(void)
 void COffsets::Error(const char* Msg)
 {
 	MessageBoxA(0,Msg,"Fatal Error",MB_OK|MB_ICONERROR);
-	__halt();
+	//__halt();
 }
 
 DWORD COffsets::GetModuleSize(const DWORD Address)
